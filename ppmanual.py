@@ -12,7 +12,7 @@ def ps1(r):
         return [ret]
     ret = "C('{}')".format(ch) if ch == '"' else 'C("{}")'.format(ch)
     return [ret]
-ps2 = lambda r: ['kword("{}")'.format(r[0].v)]
+#ps2 = lambda r: ['kword("{}")'.format(r[0].v)]
 pzero = lambda r: ["Z({})".format(flatten(r)[0])]
 pmore = lambda r: ["M({})".format(flatten(r)[0])]
 poptional = lambda r: ["O({})".format(flatten(r)[0])]
@@ -27,7 +27,7 @@ def ppost(r):
 pskip = lambda r: [r[1]]
 pcollect = lambda r: flatten(r)
 pcombine = lambda r: [(lambda x: x[0] if len(x) == 1 else "P({})".format(",".join(x)))(r[0]+r[1])]
-pdef = lambda r: ["def {0}(p): return {2}(p)".format(*flatten(r))]
+#pdef = lambda r: ["def {0}(p): return {2}(p)".format(*flatten(r))]
 def pdef(r):
     ppdata.defined_terms.add(flatten(r)[0])
     return ["def {0}(p): return {2}(p)".format(*flatten(r))]
