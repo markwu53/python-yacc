@@ -12,8 +12,6 @@ y_seq_object = y_term '*' -> pzero
     | y_term '?' -> poptional
     | y_term
     | y_symbol
-    | y_keyword
     ;
-y_term = y_identifier
-    | y_keyword
-    ;
+y_term = y_identifier;
+y_processing = y_identifier;

@@ -33,6 +33,4 @@ def pdef(r):
     return ["def {0}(p): return {2}(p)".format(*flatten(r))]
 
 y_symbol = postr(ps1, ttype("ysymbol"))
-y_keyword = postr(ps2, ttype("keyword"))
-y_processing = postr(p1, ttype("identifier"))
 y_identifier = postr(p1, ttype("identifier"))

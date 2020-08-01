@@ -11,17 +11,6 @@ def y_sequence(p): return postr(ppost,S(y_seq_objects,O(y_post_processing)))(p)
 def y_post_processing(p): return postr(pskip,S(p_post_op,y_processing))(p)
 def p_post_op(p): return postr(passing,S(s("-"),s(">")))(p)
 def y_seq_objects(p): return postr(pseq,S(M(y_seq_object)))(p)
-def y_seq_object(p): return P(postr(pzero,S(y_term,s("*"))),postr(pmore,S(y_term,s("+"))),postr(poptional,S(y_term,s("?"))),postr(passing,S(y_term)),postr(passing,S(y_symbol)),postr(passing,S(y_keyword)))(p)
-def y_term(p): return P(postr(passing,S(y_identifier)),postr(passing,S(y_keyword)))(p)
-
-
-
-
-
-
-
-
-
-
-
-
+def y_seq_object(p): return P(postr(pzero,S(y_term,s("*"))),postr(pmore,S(y_term,s("+"))),postr(poptional,S(y_term,s("?"))),postr(passing,S(y_term)),postr(passing,S(y_symbol)))(p)
+def y_term(p): return postr(passing,S(y_identifier))(p)
+def y_processing(p): return postr(passing,S(y_identifier))(p)
