@@ -4,7 +4,12 @@ import pdata
 import ppdata
 
 p1 = lambda r: [r[0].v]
-#ps1 = lambda r: ['s("{}")'.format(r[0].v)]
+pzero = lambda r: ["Z({})".format(flatten(r)[0])]
+pmore = lambda r: ["M({})".format(flatten(r)[0])]
+poptional = lambda r: ["O({})".format(flatten(r)[0])]
+pskip = lambda r: [r[1]]
+pcollect = lambda r: flatten(r)
+
 def ps1(r):
     ch = r[0].v[1:-1]
     if pdata.phase == "yacc":
@@ -12,11 +17,15 @@ def ps1(r):
         return [ret]
     ret = "C('{}')".format(ch) if ch == '"' else 'C("{}")'.format(ch)
     return [ret]
-#ps2 = lambda r: ['kword("{}")'.format(r[0].v)]
-pzero = lambda r: ["Z({})".format(flatten(r)[0])]
-pmore = lambda r: ["M({})".format(flatten(r)[0])]
-poptional = lambda r: ["O({})".format(flatten(r)[0])]
-pseq = lambda r: ["S({})".format(",".join(flatten(r)))]
+
+def pseq(r):
+    x = flatten(r)
+    if len(x) == 1:
+        ret = x[0]
+    else:
+        ret = "S({})".format(",".join(x))
+    return [ret]
+
 def ppost(r):
     x = flatten(r)
     if len(x) == 2:
@@ -24,13 +33,19 @@ def ppost(r):
     else:
         ret = "postr(passing,{})".format(*x)
     return [ret]
-pskip = lambda r: [r[1]]
-pcollect = lambda r: flatten(r)
-pcombine = lambda r: [(lambda x: x[0] if len(x) == 1 else "P({})".format(",".join(x)))(r[0]+r[1])]
-#pdef = lambda r: ["def {0}(p): return {2}(p)".format(*flatten(r))]
+
+def pcombine(r):
+    x = flatten(r)
+    if len(x) == 1:
+        ret = x[0]
+    else:
+        ret = "P({})".format(",".join(x))
+    return [ret]
+
 def pdef(r):
     ppdata.defined_terms.add(flatten(r)[0])
-    return ["def {0}(p): return {2}(p)".format(*flatten(r))]
+    ret ="def {0}(p): return {2}(p)".format(*flatten(r))
+    return [ret]
 
 y_symbol = postr(ps1, ttype("ysymbol"))
 y_identifier = postr(p1, ttype("identifier"))
