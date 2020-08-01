@@ -1,17 +1,8 @@
-identifier = identifier_first_char identifier_next_char* -> passing;
-identifier_first_char =
-    is_alpha -> passing
-    | '_' -> passing
-    ;
-identifier_next_char =
-    identifier_first_char -> passing
-    | is_digit -> passing
-    ;
-space = is_space+ -> passing;
-ysymbol =
-    "'" any "'" -> passing
-    | '"' any '"' -> passing
-    ;
-symbol = any -> passing;
-line_comment = '/' '/' line_comment_char* line_comment_end -> passing;
-block_comment = '/' '*' block_comment_char* '*' '/' -> passing;
+identifier = identifier_first_char identifier_next_char*;
+identifier_first_char = is_alpha | '_';
+identifier_next_char = identifier_first_char | is_digit;
+space = is_space+;
+ysymbol = "'" any "'" | '"' any '"';
+symbol = any;
+line_comment = '/' '/' line_comment_char* line_comment_end;
+block_comment = '/' '*' block_comment_char* '*' '/';
