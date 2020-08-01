@@ -21,3 +21,4 @@ Internally, the program has a lex pass and yacc pass to process any yacc file.
 * In the bootstrap copy, run the program. The program generates (transaltes) code for lex and yacc for the new language. It also reports undefined "terms" in the lex and yacc files.
 * In the working copy, use the generated code to replace plgencode.py and ppgencode.py. Define (write functions) the undefined terms in plmanual.py and ppmanual.py. Then try to run the program in the working copy.
 * When make any change to the new language specification, go back to the bootstrap copy to re-generate the code, because at this time the program in the working copy usually does not work. Iterate between this step and the previous step.
+* The working copy will converge to a program that can process the new language. 
