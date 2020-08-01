@@ -1,5 +1,5 @@
 import pldata
-from pbase import *
+from pbase import get_item, check_item, postr, T, flatten, N
 
 def get_char(p): return get_item(p, pldata.char_source)
 def check_char(good): return check_item(good, get_char)
