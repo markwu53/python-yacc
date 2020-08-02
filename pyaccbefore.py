@@ -1,7 +1,7 @@
 from pbase import *
-from ppbase import *
+from pyaccbase import *
 import pdata
-import ppdata
+import pyaccdata
 
 p1 = lambda r: [r[0].v]
 pzero = lambda r: ["Z({})".format(flatten(r)[0])]
@@ -48,7 +48,7 @@ def pcombine(r):
     return [ret]
 
 def pdef(r):
-    ppdata.defined_terms.add(flatten(r)[0])
+    pyaccdata.defined_terms.add(flatten(r)[0])
     ret ="def {0}(p): return {2}(p)".format(*flatten(r))
     return [ret]
 

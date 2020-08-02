@@ -1,5 +1,5 @@
 from pbase import *
-from plbase import *
+from plexbase import *
 
 any = get_char
 is_alpha = CC(str.isalpha)

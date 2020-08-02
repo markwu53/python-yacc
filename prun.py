@@ -1,23 +1,22 @@
 from pbase import *
-import pldata
-import ppdata
+import plexdata
+import pyaccdata
 import pdata
-from plex import *
-from pyacc import *
+from plexafter import *
+from pyaccafter import *
 
-def gencode(phase):
-    pdata.phase = phase
-    with open("p{}.txt".format(phase)) as fd: pldata.char_source = fd.read()
+def run():
+    pdata.phase = "lex"
+    with open("alang.txt") as fd: plexdata.char_source = fd.read()
     token_source = lexer()
     #for e in token_source: print(e)
-    used_terms = {term for t,term in token_source if t == "identifier"}
-    ppdata.token_source = token_source
-    ppdata.defined_terms = set()
+
+    pdata.phase = "yacc"
+    pyaccdata.defined_terms = set()
+    pyaccdata.token_source = token_source
     result = parse()
+
     for e in flatten(result.r): print(e)
-    undefined_terms = sorted(list(used_terms-ppdata.defined_terms))
-    for e in undefined_terms: print(e)
 
 if __name__ == "__main__":
-    gencode("lex")
-    gencode("yacc")
+    run()
