@@ -18,6 +18,11 @@ def ps1(r):
     ret = "C('{}')".format(ch) if ch == '"' else 'C("{}")'.format(ch)
     return [ret]
 
+def ps2(r):
+    k = r[0].v[1:-1]
+    ret = 'kword("{}")'.format(k)
+    return [ret]
+
 def pseq(r):
     x = flatten(r)
     if len(x) == 1:
@@ -48,4 +53,5 @@ def pdef(r):
     return [ret]
 
 y_symbol = postr(ps1, ttype("ysymbol"))
+y_keyword = postr(ps2, ttype("ykeyword"))
 y_identifier = postr(p1, ttype("identifier"))
