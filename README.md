@@ -13,10 +13,10 @@ the lex of the language. When it processes "yacc file for yacc", it generates ya
 
 ## Usage
 * First you write the language specification - the lex file and yacc file for a languare. They are both in yacc format.
-* Make a copy of the whole directory. Replace plex.txt and pyacc.txt with your files.
-* Run pgencode.py. It gives you
+* Make two copies of the whole directory. We call them "code generation copy" and "language processing copy".
+* In code generation copy, replace plex.txt and pyacc.txt with the lex file and yacc file you wrote for your language. And run pgencode.py. It gives you
     - The lex codes and yacc codes for your languare.
     - Undefined terms in your lex and yacc files.
-* Make another copy of the whole directory. Use generated lex codes and yacc codes to replace plex.py and pyacc.py.
-* You will be using prun.py to do whatever you want to do with your language. But before you do that, you need to define undefined terms in your lex file and yacc file. That is, you write functions (to define the undefined terms) in plexbefore.py and pyaccbefore.py.
+* In language processing copy, use generated lex codes and yacc codes to replace plex.py and pyacc.py. The main entry of your language processing program is prun.py. But before you run it, you need to define undefined terms in your lex file and yacc file. That is, you write functions (to define the undefined terms) in plexbefore.py and pyaccbefore.py.
+* You will work back and forth in the code generation copy and the language processing copy. In code generation copy, you experiment your language (and language processing) specification. In language processing copy, you write functions that you defined in your language specification.
 * If you used unsupported format in your lex file and yacc file, you can also extend this tool. This follows a similar process, but in a more "bootstrap" manner, after all, a lex file and a yacc file are just samples of a language called "yacc".
