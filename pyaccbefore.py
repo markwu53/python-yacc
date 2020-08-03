@@ -36,7 +36,7 @@ def ppost(r):
     if len(x) == 2:
         ret = "postr({1},{0})".format(*x)
     else:
-        ret = "postr(passing,{})".format(*x)
+        ret = x[0]
     return [ret]
 
 def pcombine(r):

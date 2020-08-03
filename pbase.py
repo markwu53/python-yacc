@@ -45,4 +45,3 @@ def postr(pp, f): return post(lambda x, p: R(x.s, x.p, pp(x.r)), f)
 def flatten(r): return [y for x in r for y in flatten(x)] if isinstance(r, list) else [r]
 def get_item(p, s): return R(False, p, []) if p == len(s) else R(True, p + 1, [s[p]])
 def check_item(good, f): return post(lambda x, p: x if good(x.r[0]) else R(False, p, []), f)
-def passing(r): return r
